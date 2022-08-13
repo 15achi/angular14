@@ -9,7 +9,14 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
+  headername="Angular14Tutorial";
+  salary=1000;
+  isdisabled=false;
   ngOnInit(): void {
+  }
+
+  Functionclick(name:string){
+    alert(name)
   }
 
 }
