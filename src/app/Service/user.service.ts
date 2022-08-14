@@ -11,4 +11,16 @@ export class UserService {
   ProceedLogin(inputdata:any){
     return this.http.post('https://localhost:7249/api/Authorization/login',inputdata);
   }
+
+  IsLogedIn(){
+    return localStorage.getItem('token')!=null;
+  }
+
+  GetToken(){
+    return localStorage.getItem('token')!=null?localStorage.getItem('token'):'';
+  }
+
+  Registration(inputdata:any){
+    return this.http.post('https://localhost:7249/api/Authorization/register',inputdata)
+  }
 }

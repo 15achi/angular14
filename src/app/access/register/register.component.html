@@ -1,1 +1,80 @@
-<p>register works!</p>
+<p>registr works</p>
+
+<mat-card>
+    <mat-card-title>User Registeration</mat-card-title>
+    <mat-card-content>
+
+        <form class="example-form" [formGroup]="reactiveform" (ngSubmit)="SaveUser()">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>privateNumber</mat-label>
+                <input matInput  formControlName="privateNumber" placeholder="privateNumber">
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>firstName</mat-label>
+                <input formControlName="firstName" matInput  placeholder="firstName">
+            </mat-form-field>
+
+             <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>lastName</mat-label>
+                <input formControlName="lastName"  matInput  placeholder="lastName" required name="lastName" >
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input  formControlName="password"  matInput placeholder="password" required type="password" name="password" >
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>phone</mat-label>
+                <input  formControlName="phone" matInput placeholder="phone" required name="phone" >
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>email</mat-label>
+                <input  formControlName="email" matInput placeholder="email" required name="email" >
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>birthDate</mat-label>
+                <input  formControlName="birthDate" matInput [matDatepicker]="picker" >
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>address</mat-label>
+                <input  formControlName="address" matInput placeholder="address" required name="address" >
+            </mat-form-field>
+
+            <label for="" ><H1>სქესი</H1></label>
+            <mat-radio-group formControlName="genderType" class="example-radio-group">
+                <mat-radio-button class="example-radio-group" *ngFor="let gender of GenderList" [value]="gender">
+                    {{gender}}
+                </mat-radio-button>
+              </mat-radio-group>
+          
+              <label for="" ><H1>როლი</H1></label>
+            <mat-radio-group formControlName="roleType" class="example-radio-group">
+                <mat-radio-button class="example-radio-group" *ngFor="let role of RoleList" [value]="role">
+                   <span>{{role}} </span> 
+                </mat-radio-button>
+              </mat-radio-group>
+          
+            <mat-form-field appearance="outline">
+                <mat-label>ქვეყანა</mat-label>
+                <mat-select placeholder="Country" formControlName="countryId">
+                  <mat-option *ngFor="let item of  countryList$|async" value="{{item.id}}">{{item.name}}</mat-option>
+                </mat-select>
+              </mat-form-field> 
+
+           
+            <div>
+                <button mat-raised-button type="submit" color="Primary">Register</button>
+                <a mat-raised-button style="margin:5px" color="accent" (click)="RedirectLogin()">close</a>
+            </div>
+        </form>
+
+
+    </mat-card-content>
+</mat-card>

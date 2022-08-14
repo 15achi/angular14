@@ -10,7 +10,10 @@ import { StatusComponent } from './status/status.component';
 import { AddcontactComponent } from './addcontact/addcontact.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
+import { UserComponent } from './user/user.component';
+import { MaterialModule } from 'src/Material-Module';
+import { TokenInterceptorService } from './Service/token-interceptor.service';
 
 
 @NgModule({
@@ -20,17 +23,19 @@ import {HttpClientModule} from "@angular/common/http";
     AboutComponent,
     ContactComponent,
     StatusComponent,
-    AddcontactComponent
+    AddcontactComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule
 
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS,useClass:TokenInterceptorService,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
